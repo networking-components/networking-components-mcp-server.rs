@@ -1,0 +1,18 @@
+# flags-2-env surface for `networking-components-mcp-server`
+[identity]
+service = "networking-components-mcp-server"
+type_name = "McpEnv"
+
+[help]
+url = "https://github.com/networking-components/networking-components-mcp-server.rs"
+columns = ["options", "env", "type", "default", "description"]
+
+[parse]
+allow_unknown = false
+
+[flags.networking-components-mcp-server-bind]
+env = "NETWORKING_COMPONENTS_MCP_SERVER_BIND"
+long = "networking-components-mcp-server-bind"
+type = "string"
+default = "127.0.0.1:9090"
+help = "Runtime environment key NETWORKING_COMPONENTS_MCP_SERVER_BIND."

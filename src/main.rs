@@ -1,5 +1,10 @@
 //! Fleet-generated organization MCP server entry point.
 
+#[path = "../generated/rust/env.rs"]
+mod env;
+#[path = "../generated/rust/runtime.rs"]
+mod env_runtime;
+
 use ore_mcp_org_server::{run_stdio, OrgSpec};
 
 const DEPENDENCIES: &[&str] = &[
@@ -13,6 +18,8 @@ const DEPENDENCIES: &[&str] = &[
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let env_values = env_runtime::load_from_os();
+    let _ = &env_values;
     run_stdio(OrgSpec {
         organization: "networking-components",
         repository: "networking-components/networking-components-mcp-server.rs",
