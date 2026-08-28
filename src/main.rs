@@ -18,8 +18,6 @@ const DEPENDENCIES: &[&str] = &[
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let env_values = env_runtime::load_from_os();
-    let _ = &env_values;
     run_stdio(OrgSpec {
         organization: "networking-components",
         repository: "networking-components/networking-components-mcp-server.rs",
