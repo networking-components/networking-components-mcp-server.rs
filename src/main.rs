@@ -1,30 +1,16 @@
 //! Fleet-generated organization MCP server entry point.
 
+#[allow(clippy::all, clippy::pedantic)]
 #[path = "../generated/rust/env.rs"]
 mod env;
+#[allow(clippy::all, clippy::pedantic)]
 #[path = "../generated/rust/runtime.rs"]
 mod env_runtime;
+mod spec;
 
-use ore_mcp_org_server::{run_stdio, OrgSpec};
-
-const DEPENDENCIES: &[&str] = &[
-    "ORESoftware/mcp-rust-libs",
-    "ores-otel/ores-mcp-server-core-libs.rs",
-    "shared-auth/shared-auth-clients",
-    "shared-auth/shared-auth-interfaces",
-    "shared-auth/shared-auth-lib",
-    "zed-pkg/zed-cli",
-];
+use ore_mcp_org_server::run_stdio;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    run_stdio(OrgSpec {
-        organization: "networking-components",
-        repository: "networking-components/networking-components-mcp-server.rs",
-        service_name: "networking-components-mcp-server",
-        package_name: "networking-components-mcp-server",
-        dependencies: DEPENDENCIES,
-        version: env!("CARGO_PKG_VERSION"),
-    })
-    .await
+    run_stdio(spec::org_spec()).await
 }
