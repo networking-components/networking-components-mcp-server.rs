@@ -1,10 +1,10 @@
 schema_version: ores.compose.v1
-project: networking-components-mcp-server.rs
+project: networking-components-mcp-server
 allow_lazy_start: false
 
 services:
-  networking-components-mcp-server.rs:
-    name: networking-components-mcp-server.rs
+  networking-components-mcp-server:
+    name: networking-components-mcp-server
     runtime: host
     build:
       - ["cargo", "build", "--bins"]
